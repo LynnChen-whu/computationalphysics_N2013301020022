@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Python3程序，用于将输入的字母串变换成由‘#’号组成的字符画。
+Python3脚本，用于将输入的字母串变换成由‘#’号组成的字符画。
 """
 
 
-letter_code={
+letter_code={                             #字模字典
              'A':[['  ##    '],
                   [' #  #   '],
                   ['#    #  '],
@@ -63,7 +63,7 @@ letter_code={
   
   
 
-def amplifier(st):
+def amplifier(st):  #字符串字符画变换函数
     m=st
     i=0
     t=[]
@@ -84,7 +84,7 @@ def amplifier(st):
         print(b[(len(m)-1)])
         
 
-def amp_s(nst,s):   #每行字母个数为s（临时变量）
+def amp_s(nst,s):   #每行字母个数为s（临时变量）的分行输出函数
     l=len(nst)
     m=l//s
     n=l%s
@@ -96,7 +96,7 @@ def amp_s(nst,s):   #每行字母个数为s（临时变量）
         amplifier(nst[(i*s):])
         
  
-def amp(nst):   #每行字母个数为sl（全局变量）
+def amp(nst):  #每行字母个数为sl（全局变量）的分行输出函数
     l=len(nst)
     m=l//sl
     n=l%sl
@@ -106,14 +106,14 @@ def amp(nst):   #每行字母个数为sl（全局变量）
         i=i+1
     if(n>0):
         amplifier(nst[(i*sl):]) 
+
  
+sl=8  #用于控制amp函数的行宽度的全局变量
 
 
-amp_s('CHENLIN',4)
-        
-sl=8
+
 amp('LYNNCHEN')    
-
+amp_s('CHENLIN',4)
 
 
 
