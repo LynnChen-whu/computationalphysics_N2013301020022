@@ -1,4 +1,6 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 """
 Python3程序，用于将输入的字母串变换成由‘#’号组成的字符画。
 """
