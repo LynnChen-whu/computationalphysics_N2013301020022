@@ -71,12 +71,16 @@ while(1):
     print('以下是部分可选的绘图颜色：')
     for i in range(len(LC)):
         print(LC[i])
-    print('以下是部分可选的绘图线型：')
+    print('以下是可选的绘图线型：')
     for i in range(4):
         print(LF[i])
-    print('以下的“绘图线格式”的格式是“（颜色标识符）线型标识符”。')
+    print('以下是可选的数据点标注：')
+    for i in range(4,(len(LF))):
+        print(LF[i])
+    print('以下的“绘图线格式”的格式是“（颜色标识符）线型标识符（标注标识符）”。\n高计算精度时使用标注标识符会使线变得很粗。')
     lineformA=str(input('输入绘图线格式A：'))
     lineformB=str(input('输入绘图线格式B：'))
+    width=float(input('输入线宽：'))
     print('\n')
     
     NA=[NA0]
@@ -94,8 +98,8 @@ while(1):
         if(i%fine==0):
             print(T[i],NA[i],NB[i])
     
-    mp.plot(T,NA,lineformA,label='A')
-    mp.plot(T,NB,lineformB,label='B')
+    mp.plot(T,NA,lineformA,linewidth=width,label='A')
+    mp.plot(T,NB,lineformB,linewidth=width,label='B')
     mp.xlabel('T')
     mp.ylabel('N')
     mp.title('N-T')
