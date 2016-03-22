@@ -1,7 +1,5 @@
 ﻿# README
 
-标签（空格分隔）： 未分类
-
 **computationalphysics_N2013301020022**
 ---
 
