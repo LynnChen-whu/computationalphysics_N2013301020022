@@ -7,7 +7,7 @@
 
 听说不应该把自述文件搞得太乱，所以还是另外做一个文件当作试验品吧。
 
-* 试验用文件: [Experiment](https://github.com/LynnChen-whu/computationalphysics_N2013301020022/blob/master/Experiment.md)
+* markdown试验用文件: [Experiment](https://github.com/LynnChen-whu/computationalphysics_N2013301020022/blob/master/Experiment.md)
 
 由于电脑装不进Anaconda的Python2.7版本，故使用的语言版本是3.5.1。
 
