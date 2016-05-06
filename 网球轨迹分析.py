@@ -10,7 +10,8 @@ Created on Sat Apr 30 00:09:00 2016
 import math
 import matplotlib.pyplot as mp
 import easygui as eg
-from mpl_toolkits.mplot3d import Axes3D
+from mpl_toolkits.mplot3d import Axes3D as axes3d
+import numpy as np
 
 '''定义的所有函数形参形式为'x=[]'时要求x是一个长度为3的实数列表'''
 
@@ -65,7 +66,7 @@ class court(object):
             answer='false'
         return answer
     
-class tennis_ball(object):
+class tennis_ball(object): # 254cm落地应反弹140cm
     def __init__(self,v=[0,0,0],p=[0,-0.5*23.77,0.92],spin=[0,0,0],mass=0.057,radius=0.0335,dt=0.01): # 输入转速的单位是转每秒
         self.mass=mass
         self.radius=radius
@@ -93,7 +94,7 @@ class tennis_ball(object):
             self.v[i]=self.v[i]+a[i]*self.dt
             
 class air(object):
-    def __init__(self,rho0=1.1691,Temperature0=298.15,B=0.0001,S=6.109*10**(-5)):
+    def __init__(self,rho0=1.1691,Temperature0=298.15,B=0.0001,S=3.109*10**(-5)):
         self.rho0=rho0
         self.Temperature=Temperature0
         self.B=B
@@ -137,7 +138,8 @@ a=tennis_ball(v=[float(eg.enterbox("input the Vx (m/s)")),
                  float(eg.enterbox("input the position_z (m)"))],
               spin=[float(eg.enterbox("input the ωx (r/s)")),
                     float(eg.enterbox("input the ωy (r/s)")),
-                    float(eg.enterbox("input the ωz (r/s)"))])
+                    float(eg.enterbox("input the ωz (r/s)"))],
+              dt=0.001)
 s3=earth()
 atmosphere=air()
 
@@ -156,16 +158,32 @@ def write(p=[]):
     Y=[p[0][1]]
     Z=[p[0][2]]
     fig=mp.figure()
-    ax=Axes3D(fig)
+    ax=axes3d(fig)
     for i in range(1,len(p)):
         X.append(p[i][0])
         Y.append(p[i][1])
-        Z.append(p[i][2])      
-    ax.scatter(X,Y,Z)
-    
+        Z.append(p[i][2])     
+    ax.scatter(X,Y,Z,s=1,c=X) 
+    x=np.linspace(-0.5*single_court.width,-0.5*single_court.width,500)
+    y=np.linspace(-0.5*single_court.length,0.5*single_court.length,500)
+    z=np.linspace(0,0,500)
+    ax.scatter(x,y,z,s=1,c='g') 
+    x=np.linspace(-0.5*single_court.width,0.5*single_court.width,500)
+    y=np.linspace(-0.5*single_court.length,-0.5*single_court.length,500)
+    z=np.linspace(0,0,500)
+    ax.scatter(x,y,z,s=1,c='#00FF7F') 
+    x=np.linspace(0.5*single_court.width,0.5*single_court.width,500)
+    y=np.linspace(-0.5*single_court.length,0.5*single_court.length,500)
+    z=np.linspace(0,0,500)
+    ax.scatter(x,y,z,s=1,c='#00FF7F') 
+    x=np.linspace(-0.5*single_court.width,0.5*single_court.width,500)
+    y=np.linspace(0.5*single_court.length,0.5*single_court.length,500)
+    z=np.linspace(0,0,500)
+    ax.scatter(x,y,z,s=1,c='#00FF7F') 
+    ax.set_xticks([i for i in range(-7,8)])
+    ax.set_yticks([i for i in range(-15,16)])
+    ax.set_zticks([i for i in range(-1,6)])
         
 baseline_ball()
-write(a.p)
-mp.show()    
-    
+write(a.p)  
     
